@@ -3,6 +3,8 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import buble from 'rollup-plugin-buble';
 import uglify from 'rollup-plugin-uglify';
+import json from 'rollup-plugin-json';
+import globals from 'rollup-plugin-node-globals';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -30,8 +32,14 @@ export default {
 		// some cases you'll need additional configuration —
 		// consult the documentation for details:
 		// https://github.com/rollup/rollup-plugin-commonjs
-		resolve(),
+		resolve({
+			browser: true,
+			external: ['axios']
+		}),
+		// npm(),
 		commonjs(),
+		json(),
+		globals(),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), transpile and minify

@@ -1,0 +1,16 @@
+<label>Title: <input bind:value=title on:focus=this.select()></label>
+<label>Report: <textarea bind:value=report on:focus=this.select()></textarea></label>
+
+<style>
+</style>
+
+<script>
+  export default {
+    data() {
+      return {
+        title: 'New Title',
+        report: 'New Report'
+      }
+    }
+  }
+</script>

@@ -1,11 +1,5 @@
 <h1>Hello {name}!</h1>
 
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
-
 {#if user.loggedIn}
 	<a href="/logout">log out</a>
 {/if}
@@ -14,12 +8,11 @@
 	<a href="/login">log in</a>
 {/if}
 
-
 {#await getReports}
 	<p>Loading reports...</p>
 {:then reports}
 	<ul>
-		{#each reports as report}
+		{#each reports.data as report}
 		<li>
 			<h2>{report.title}</h2>
 			<h3>submitted by {report.username}</h3>
@@ -30,3 +23,13 @@
 {:catch error}
 	<p>Something has gone wrong :( mybad</p>
 {/await}
+
+<Submit/>
+
+<script>
+	import Submit from './Submit.html'
+
+	export default {
+		components: { Submit }
+	}
+</script>

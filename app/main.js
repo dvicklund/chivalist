@@ -1,5 +1,7 @@
 import App from './App.html'
 
+import { SERVER_HOST, SERVER_PORT } from '../.config/service.js'
+
 const app = new App({
 	target: document.body,
 	data: {
@@ -7,12 +9,10 @@ const app = new App({
 		user: {
 			loggedIn: false
 		},
-		getReports: new Promise(fulfill => {
-			console.log('fulfilling...')
-
-			fulfill([{title: 'you got it', body: 'got it so good', username: 'zquil56'}])
-		}, reject => {
-			reject(new Error('You failed'))
+		getReports: new Promise((resolve, reject) => {
+			axios.get(SERVER_HOST + ':' + SERVER_PORT + '/reports')
+				.then(resolve)
+				.catch(reject)
 		})
 	}
 })
